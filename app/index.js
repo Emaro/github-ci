@@ -1,5 +1,5 @@
-import { magicFn } from "../lib";
-import { words } from "capitalize";
+import { magicFn } from "../lib/out/main.js";
+import cap from "capitalize";
 
-const r = magicFn(words("hello world"));
+const r = magicFn(cap.words("hello world"));
 console.log('Result of magicFn:', r);
