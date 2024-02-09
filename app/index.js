@@ -1,4 +1,4 @@
-import { magicFn } from "../lib/out/main.js";
+import { magicFn } from "lib";
 import cap from "capitalize";
 
 const r = magicFn(cap.words("hello world"));
