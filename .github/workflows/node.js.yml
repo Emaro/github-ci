@@ -29,11 +29,7 @@ jobs:
       working-directory: ./lib
     - run: npm run build --if-present
       working-directory: ./lib
-    - run: npm link
-      working-directory: ./lib
 
-    - run: npm link lib
-      working-directory: ./app
     - run: npm ci
       working-directory: ./app
     - run: npm start
