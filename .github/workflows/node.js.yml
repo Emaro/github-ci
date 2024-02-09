@@ -10,12 +10,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-lib:
+  build:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./lib
 
     strategy:
       matrix:
@@ -29,31 +25,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: lib/package-lock.json
+
     - run: npm ci
+      working-directory: ./lib
     - run: npm run build --if-present
+      working-directory: ./lib
 
-  build-app:
-    needs: build-lib
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./app
-
-    strategy:
-      matrix:
-        node-version: [20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: app/package-lock.json
     - run: npm ci
+      working-directory: ./app
     - run: npm start
+      working-directory: ./app
   
