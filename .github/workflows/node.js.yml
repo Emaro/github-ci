@@ -32,6 +32,8 @@ jobs:
     - run: npm link
       working-directory: ./lib
 
+    - run: npm link lib
+      working-directory: ./app
     - run: npm ci
       working-directory: ./app
     - run: npm start
